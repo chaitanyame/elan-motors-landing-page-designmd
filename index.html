@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Élan Motors — French Electric Urban Hatchbacks</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth;font-size:16px}
+    body{
+      font-family:'Inter Tight','-apple-system','system-ui',sans-serif;
+      background:#ffffff;color:#222222;line-height:1.4;
+      -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale
+    }
+    .container{max-width:1280px;margin:0 auto;padding:0 24px}
+    @media(min-width:768px){.container{padding:0 48px}}
+    @media(min-width:1024px){.container{padding:0 80px}}
+
+    /* Top Nav */
+    .top-nav{
+      position:sticky;top:0;z-index:100;
+      height:60px;background:#ffffff;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:0 24px;
+      border-bottom:1px solid #f2f2f2
+    }
+    @media(min-width:768px){.top-nav{padding:0 48px}}
+    @media(min-width:1024px){.top-nav{padding:0 80px}}
+    .wordmark{
+      font-family:'Inter Tight',sans-serif;
+      font-size:14.4px;font-weight:700;letter-spacing:0.144px;
+      color:#000000;text-decoration:none;line-height:1;text-transform:uppercase
+    }
+    .nav-links{display:none;list-style:none;align-items:center;gap:40px}
+    @media(min-width:1024px){.nav-links{display:flex}}
+    .nav-links a{
+      font-family:'Inter Tight',sans-serif;
+      font-size:14.4px;font-weight:700;line-height:1;letter-spacing:0.144px;
+      color:#000000;text-decoration:none
+    }
+    .nav-links a:hover{color:#666666}
+    .nav-actions{display:flex;align-items:center;gap:16px}
+    .hamburger{
+      display:flex;flex-direction:column;gap:5px;cursor:pointer;
+      background:none;border:none;padding:8px
+    }
+    @media(min-width:1024px){.hamburger{display:none}}
+    .hamburger span{
+      display:block;width:22px;height:2px;background:#000000;
+      transition:transform .3s,opacity .3s
+    }
+    .hamburger.active span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.active span:nth-child(2){opacity:0}
+    .hamburger.active span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+    /* Mobile Menu */
+    .mobile-menu{
+      display:none;position:fixed;top:60px;left:0;right:0;bottom:0;
+      background:#ffffff;z-index:99;padding:48px 24px;
+      flex-direction:column;gap:8px
+    }
+    .mobile-menu.open{display:flex}
+    .mobile-menu a{
+      font-family:'Inter Tight',sans-serif;
+      font-size:14.4px;font-weight:700;line-height:1;letter-spacing:0.144px;
+      color:#000000;text-decoration:none;
+      padding:16px 0;border-bottom:1px solid #f2f2f2
+    }
+
+    /* Sections */
+    section{padding:80px 0}
+    @media(max-width:767px){section{padding:40px 0}}
+
+    /* Buttons */
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      height:48px;padding:14px 24px;
+      font-family:'Inter Tight',sans-serif;font-size:14.4px;font-weight:700;
+      letter-spacing:0.144px;line-height:1;
+      border-radius:2px;cursor:pointer;
+      text-decoration:none;transition:background-color .2s,color .2s,border-color .2s
+    }
+    .btn-primary{
+      background:#ffed00;color:#000000;
+      border:1px solid #ffed00
+    }
+    .btn-primary:hover{background:#e6d200;border-color:#e6d200}
+    .btn-outline-light{
+      background:transparent;color:#ffffff;
+      border:1px solid #ffffff
+    }
+    .btn-outline-light:hover{background:rgba(255,255,255,.08)}
+    .btn-outline-dark{
+      background:#ffffff;color:#000000;
+      border:1px solid #000000
+    }
+    .btn-outline-dark:hover{background:#f7f7f7}
+
+    /* Hero */
+    .hero-band{
+      position:relative;min-height:80vh;
+      display:flex;align-items:center;
+      overflow:hidden;padding:0;background:#000000
+    }
+    .hero-bg{
+      position:absolute;top:0;left:0;width:100%;height:100%;z-index:0
+    }
+    .hero-bg img{
+      width:100%;height:100%;object-fit:cover
+    }
+    .hero-overlay{
+      position:absolute;top:0;left:0;width:100%;height:100%;
+      background:rgba(0,0,0,.45);z-index:1
+    }
+    .hero-content{
+      position:relative;z-index:2;
+      max-width:720px;padding:0 24px
+    }
+    .hero-title{
+      font-family:'Inter Tight',sans-serif;
+      font-size:56px;font-weight:700;line-height:0.95;letter-spacing:0;
+      color:#ffffff;margin-bottom:16px
+    }
+    @media(max-width:767px){.hero-title{font-size:40px}}
+    .hero-sub{
+      font-family:'Inter Tight',sans-serif;
+      font-size:19.2px;font-weight:600;line-height:1.3;letter-spacing:0;
+      color:rgba(255,255,255,0.72);max-width:560px;margin:0 0 32px
+    }
+    @media(max-width:767px){.hero-sub{font-size:16px}}
+    .hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+
+    /* Section Headers */
+    .section-header{text-align:center;margin-bottom:64px}
+    .section-label{
+      display:inline-block;
+      font-family:'Inter Tight',sans-serif;
+      font-size:10px;font-weight:700;line-height:1.45;letter-spacing:0;text-transform:uppercase;
+      color:#666666;margin-bottom:12px
+    }
+    .section-title{
+      font-family:'Inter Tight',sans-serif;
+      font-size:40px;font-weight:700;line-height:0.95;letter-spacing:0;
+      color:#000000;margin-bottom:16px
+    }
+    @media(max-width:767px){.section-title{font-size:32px}}
+    .section-title-light{color:#ffffff}
+    .section-desc{
+      font-family:'Inter Tight',sans-serif;
+      font-size:16px;font-weight:400;line-height:1.4;letter-spacing:0;
+      color:#666666;max-width:640px;margin:0 auto
+    }
+    .section-desc-light{color:rgba(255,255,255,0.72)}
+
+    /* Vehicle Grid */
+    .vehicle-grid{
+      display:grid;grid-template-columns:1fr;gap:0
+    }
+    @media(min-width:768px){.vehicle-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:1024px){.vehicle-grid{grid-template-columns:repeat(3,1fr)}}
+    .vehicle-card{
+      background:#ffffff;border-radius:0;
+      display:flex;flex-direction:column
+    }
+    .vehicle-card-photo{
+      aspect-ratio:4/3;overflow:hidden;
+      display:flex;align-items:center;justify-content:center
+    }
+    .vehicle-card-photo img{
+      width:100%;height:100%;object-fit:cover
+    }
+    .vehicle-card-body{
+      padding:24px;position:relative
+    }
+    .badge-new{
+      display:inline-block;
+      background:#ffed00;color:#000000;
+      font-family:'Inter Tight',sans-serif;font-size:14.4px;font-weight:700;
+      line-height:1;letter-spacing:0.144px;
+      border-radius:46px;padding:6px 14px;margin-bottom:12px
+    }
+    .vehicle-card-name{
+      font-family:'Inter Tight',sans-serif;
+      font-size:20px;font-weight:700;line-height:0.95;letter-spacing:0;
+      color:#000000;margin-bottom:6px
+    }
+    .vehicle-card-tagline{
+      font-family:'Inter Tight',sans-serif;
+      font-size:14px;font-weight:400;line-height:1.57;letter-spacing:0;
+      color:#666666;margin-bottom:16px
+    }
+    .vehicle-card-link{
+      font-family:'Inter Tight',sans-serif;
+      font-size:14.4px;font-weight:700;line-height:1;letter-spacing:0.144px;
+      color:#000000;text-decoration:none
+    }
+    .vehicle-card-link:hover{color:#666666}
+
+    /* Dark Section */
+    .section-dark{
+      background:#000000;color:#ffffff
+    }
+
+    /* Promo Grid */
+    .promo-grid{
+      display:grid;grid-template-columns:1fr;gap:0
+    }
+    @media(min-width:768px){.promo-grid{grid-template-columns:repeat(2,1fr)}}
+    .promo-tile{
+      padding:32px;
+      font-family:'Inter Tight',sans-serif;
+      font-size:24px;font-weight:700;line-height:0.95;letter-spacing:0;
+      text-decoration:none;border-radius:0;
+      display:flex;flex-direction:column;justify-content:center;min-height:240px
+    }
+    .promo-tile-light{
+      background:#ffffff;color:#000000
+    }
+    .promo-tile-dark{
+      background:#000000;color:#ffffff
+    }
+    .promo-tile-yellow{
+      background:#ffed00;color:#000000
+    }
+    .promo-tile-sub{
+      font-family:'Inter Tight',sans-serif;
+      font-size:16px;font-weight:400;line-height:1.4;letter-spacing:0;
+      margin-top:12px
+    }
+    .promo-tile-yellow .promo-tile-sub{color:#000000}
+    .promo-tile-dark .promo-tile-sub{color:rgba(255,255,255,0.72)}
+    .promo-tile .btn{margin-top:20px}
+
+    /* Configurator Preview */
+    .configurator-band{padding:80px 0}
+    .configurator-layout{
+      display:grid;grid-template-columns:1fr;gap:0
+    }
+    @media(min-width:1024px){
+      .configurator-layout{grid-template-columns:3fr 2fr}
+    }
+    .configurator-vis{
+      background:#f7f7f7;min-height:400px;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden
+    }
+    .configurator-vis img{
+      width:100%;height:100%;object-fit:cover
+    }
+    .configurator-panel{
+      background:#ffffff;padding:32px;
+      border-left:1px solid #f2f2f2
+    }
+    .configurator-panel-title{
+      font-family:'Inter Tight',sans-serif;
+      font-size:20px;font-weight:700;line-height:0.95;letter-spacing:0;
+      color:#000000;margin-bottom:24px
+    }
+    .configurator-row{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:24px 0;
+      border-bottom:1px solid #f2f2f2
+    }
+    .configurator-row:last-child{border-bottom:none}
+    .configurator-row-label{
+      font-family:'Inter Tight',sans-serif;
+      font-size:16px;font-weight:400;line-height:1.4;letter-spacing:0;
+      color:#222222
+    }
+    .configurator-row-value{
+      font-family:'Inter Tight',sans-serif;
+      font-size:16px;font-weight:600;line-height:1.4;letter-spacing:0;
+      color:#000000
+    }
+    .configurator-dots{display:flex;gap:8px}
+    .configurator-dot{
+      width:56px;height:56px;border-radius:9999px;
+      background:#f7f7f7;border:1px solid #f2f2f2;cursor:pointer
+    }
+    .configurator-dot.active{border:1px solid #000000}
+
+    /* Tech Specs */
+    .tech-band{padding:80px 0}
+    .specs-grid{
+      display:grid;grid-template-columns:1fr;gap:0;
+      border-top:1px solid rgba(255,255,255,0.16)
+    }
+    @media(min-width:480px){.specs-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:768px){.specs-grid{grid-template-columns:repeat(5,1fr)}}
+    .spec-cell{
+      padding:24px 16px;text-align:center;
+      border-bottom:1px solid rgba(255,255,255,0.16);
+      border-right:1px solid rgba(255,255,255,0.16)
+    }
+    .specs-grid .spec-cell:last-child{border-right:none}
+    @media(max-width:479px){
+      .spec-cell{border-right:none}
+    }
+    .spec-value{
+      font-family:'Inter Tight',sans-serif;
+      font-size:40px;font-weight:700;line-height:0.95;letter-spacing:0;
+      color:#ffffff;margin-bottom:4px
+    }
+    @media(max-width:767px){.spec-value{font-size:32px}}
+    .spec-label{
+      font-family:'Inter Tight',sans-serif;
+      font-size:10px;font-weight:700;line-height:1.45;letter-spacing:0;text-transform:uppercase;
+      color:#8a8a8a
+    }
+
+    /* Yellow CTA Band */
+    .cta-yellow-band{
+      background:#ffed00;color:#000000;
+      padding:80px 0;text-align:center
+    }
+    .cta-yellow-title{
+      font-family:'Inter Tight',sans-serif;
+      font-size:40px;font-weight:700;line-height:0.95;letter-spacing:0;
+      color:#000000;margin-bottom:16px
+    }
+    @media(max-width:767px){.cta-yellow-title{font-size:32px}}
+    .cta-yellow-desc{
+      font-family:'Inter Tight',sans-serif;
+      font-size:16px;font-weight:400;line-height:1.4;letter-spacing:0;
+      color:#000000;max-width:560px;margin:0 auto 24px
+    }
+
+    /* CTA Dark Band */
+    .cta-dark-band{
+      background:#000000;color:#ffffff;
+      text-align:center;padding:80px 0
+    }
+    .cta-dark-title{
+      font-family:'Inter Tight',sans-serif;
+      font-size:40px;font-weight:700;line-height:0.95;letter-spacing:0;
+      color:#ffffff;margin-bottom:16px
+    }
+    @media(max-width:767px){.cta-dark-title{font-size:32px}}
+    .cta-dark-desc{
+      font-family:'Inter Tight',sans-serif;
+      font-size:16px;font-weight:400;line-height:1.4;letter-spacing:0;
+      color:rgba(255,255,255,0.72);max-width:520px;margin:0 auto 24px
+    }
+
+    /* Footer */
+    .footer{
+      background:#000000;color:rgba(255,255,255,0.72);
+      padding:64px 24px 32px
+    }
+    .footer-grid{
+      display:grid;grid-template-columns:1fr;gap:40px;margin-bottom:48px
+    }
+    @media(min-width:640px){.footer-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(min-width:768px){.footer-grid{grid-template-columns:repeat(3,1fr)}}
+    @media(min-width:1024px){.footer-grid{grid-template-columns:repeat(4,1fr)}}
+    .footer-col h4{
+      font-family:'Inter Tight',sans-serif;
+      font-size:14px;font-weight:400;line-height:1.57;letter-spacing:0;
+      color:#ffffff;margin-bottom:16px
+    }
+    .footer-col ul{list-style:none}
+    .footer-col ul li{margin-bottom:10px}
+    .footer-col ul a{
+      font-family:'Inter Tight',sans-serif;
+      font-size:14px;font-weight:400;line-height:1.57;letter-spacing:0;
+      color:rgba(255,255,255,0.72);text-decoration:none
+    }
+    .footer-col ul a:hover{color:#ffffff}
+    .footer-divider{
+      border:none;border-top:1px solid rgba(255,255,255,0.16);margin-bottom:24px
+    }
+    .footer-bottom{
+      display:flex;flex-direction:column;align-items:center;gap:8px;text-align:center
+    }
+    @media(min-width:768px){
+      .footer-bottom{flex-direction:row;justify-content:space-between}
+    }
+    .footer-copyright{
+      font-family:'Inter Tight',sans-serif;
+      font-size:14px;font-weight:400;line-height:1.57;letter-spacing:0;
+      color:rgba(255,255,255,0.72)
+    }
+    .footer-legal{display:flex;gap:16px;flex-wrap:wrap;justify-content:center}
+    .footer-legal a{
+      font-family:'Inter Tight',sans-serif;
+      font-size:14px;font-weight:400;line-height:1.57;letter-spacing:0;
+      color:#666666;text-decoration:none
+    }
+    .footer-legal a:hover{color:#ffffff}
+  </style>
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="top-nav" role="navigation" aria-label="Navigation principale">
+    <a href="#" class="wordmark">ÉLAN MOTORS</a>
+    <ul class="nav-links">
+      <li><a href="#models">Modèles</a></li>
+      <li><a href="#technology">Technologie</a></li>
+      <li><a href="#configurator">Configurateur</a></li>
+      <li><a href="#store">Store</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="hamburger" id="hamburger" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-label="Navigation mobile">
+    <a href="#models">Modèles</a>
+    <a href="#technology">Technologie</a>
+    <a href="#configurator">Configurateur</a>
+    <a href="#store">Store</a>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero-band" id="hero">
+    <div class="hero-bg">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/2021_Renault_Megane_E-Tech_%28BVA%29_RL10%2C_Gare_de_Fosses-La_Garenne_%28cropped%29.jpg/960px-2021_Renault_Megane_E-Tech_%28BVA%29_RL10%2C_Gare_de_Fosses-La_Garenne_%28cropped%29.jpg" alt="Élan Motors electric hatchback in urban setting" loading="eager">
+    </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <h1 class="hero-title">ÉLAN ÉLECTRIQUE</h1>
+      <p class="hero-sub">French-designed electric urban hatchbacks. Distinctive by design, effortless by engineering.</p>
+      <div class="hero-actions">
+        <a href="#models" class="btn btn-primary">Explorer les modèles</a>
+        <a href="#configurator" class="btn btn-outline-light">Configurateur</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Models -->
+  <section id="models">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">La Gamme</span>
+        <h2 class="section-title">TROIS VISIONS DE LA VILLE</h2>
+        <p class="section-desc">Chaque Élan est conçu à Paris, pensé pour la mobilité urbaine du futur.</p>
+      </div>
+      <div class="vehicle-grid">
+        <div class="vehicle-card">
+          <div class="vehicle-card-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Renault_Zoe_%28facelift%29_%E2%80%93_Heckansicht%2C_15._September_2021%2C_D%C3%BCsseldorf.jpg/960px-Renault_Zoe_%28facelift%29_%E2%80%93_Heckansicht%2C_15._September_2021%2C_D%C3%BCsseldorf.jpg" alt="Élan Cité — city electric hatchback" loading="lazy">
+          </div>
+          <div class="vehicle-card-body">
+            <span class="badge-new">NOUVEAU</span>
+            <h3 class="vehicle-card-name">Élan Cité</h3>
+            <p class="vehicle-card-tagline">Urban agility meets French design. 320 km range, compact footprint.</p>
+            <a href="#" class="vehicle-card-link">Découvrir →</a>
+          </div>
+        </div>
+        <div class="vehicle-card">
+          <div class="vehicle-card-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e8/Renault_5_E-Tech_Electric_%282024%29_%E2%80%93_IMG_5924.jpg/960px-Renault_5_E-Tech_Electric_%282024%29_%E2%80%93_IMG_5924.jpg" alt="Élan Évasion — extended range hatchback" loading="lazy">
+          </div>
+          <div class="vehicle-card-body">
+            <h3 class="vehicle-card-name">Élan Évasion</h3>
+            <p class="vehicle-card-tagline">Extended range for weekend escapes. 450 km WLTP, fast-charge capable.</p>
+            <a href="#" class="vehicle-card-link">Découvrir →</a>
+          </div>
+        </div>
+        <div class="vehicle-card">
+          <div class="vehicle-card-photo">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9e/2022_Renault_Megane_E-Tech_%28BVA%29_RL10_%E2%80%93_IMG_6881.jpg/960px-2022_Renault_Megane_E-Tech_%28BVA%29_RL10_%E2%80%93_IMG_6881.jpg" alt="Élan Sport — performance electric hatchback" loading="lazy">
+          </div>
+          <div class="vehicle-card-body">
+            <h3 class="vehicle-card-name">Élan Sport</h3>
+            <p class="vehicle-card-tagline">Performance redefined. Dual motor AWD, 0–100 km/h in 4.2 s.</p>
+            <a href="#" class="vehicle-card-link">Découvrir →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Technology -->
+  <section id="technology" class="section-dark">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Innovation</span>
+        <h2 class="section-title section-title-light">INGÉNIERIE FRANÇAISE</h2>
+        <p class="section-desc section-desc-light">Propulsion électrique née à Paris, testée sur routes européennes.</p>
+      </div>
+      <div class="specs-grid">
+        <div class="spec-cell">
+          <div class="spec-value">450 km</div>
+          <div class="spec-label">Autonomie WLTP</div>
+        </div>
+        <div class="spec-cell">
+          <div class="spec-value">170 kW</div>
+          <div class="spec-label">Puissance Moteur</div>
+        </div>
+        <div class="spec-cell">
+          <div class="spec-value">4.2 s</div>
+          <div class="spec-label">0–100 km/h</div>
+        </div>
+        <div class="spec-cell">
+          <div class="spec-value">87 kWh</div>
+          <div class="spec-label">Batterie</div>
+        </div>
+        <div class="spec-cell">
+          <div class="spec-value">22 min</div>
+          <div class="spec-label">Recharge Rapide</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promo Tiles -->
+  <section>
+    <div class="container">
+      <div class="promo-grid">
+        <a href="#" class="promo-tile promo-tile-light">
+          Configurateur Élan
+          <span class="promo-tile-sub">Personnalisez votre hatchback électrique. Choisissez couleur, jantes, et intérieur.</span>
+          <span class="btn btn-primary">Configurer</span>
+        </a>
+        <a href="#" class="promo-tile promo-tile-yellow">
+          Offre de Lancement
+          <span class="promo-tile-sub">Jusqu'à 4 000 € d'économie sur les premiers modèles. Offre limitée.</span>
+          <span class="btn btn-primary">En savoir plus</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Configurator Preview -->
+  <section id="configurator" class="configurator-band">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Personnalisation</span>
+        <h2 class="section-title">VOTRE ÉLAN, VOTRE STYLE</h2>
+        <p class="section-desc">Trois finitions, huit couleurs, une infinité de possibilités.</p>
+      </div>
+      <div class="configurator-layout">
+        <div class="configurator-vis">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Renault_Scenic_E-Tech_Electric_%282024%29_%E2%80%93_IMG_6117.jpg/960px-Renault_Scenic_E-Tech_Electric_%282024%29_%E2%80%93_IMG_6117.jpg" alt="Élan Motors configurator preview" loading="lazy">
+        </div>
+        <div class="configurator-panel">
+          <h3 class="configurator-panel-title">Élan Cité — Finition Atelier</h3>
+          <div class="configurator-row">
+            <span class="configurator-row-label">Motorisation</span>
+            <span class="configurator-row-value">100 kW / 320 km</span>
+          </div>
+          <div class="configurator-row">
+            <span class="configurator-row-label">Jantes</span>
+            <span class="configurator-row-value">18" Alliage Noir</span>
+          </div>
+          <div class="configurator-row">
+            <span class="configurator-row-label">Couleur</span>
+            <span class="configurator-row-value">
+              <div class="configurator-dots">
+                <span class="configurator-dot active" style="background:#ffed00"></span>
+                <span class="configurator-dot" style="background:#000000"></span>
+                <span class="configurator-dot" style="background:#ffffff"></span>
+                <span class="configurator-dot" style="background:#333333"></span>
+              </div>
+            </span>
+          </div>
+          <div class="configurator-row">
+            <span class="configurator-row-label">Intérieur</span>
+            <span class="configurator-row-value">Tissu Gris Chiné</span>
+          </div>
+          <div style="margin-top:24px">
+            <a href="#" class="btn btn-primary">Configurer complet</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Yellow CTA -->
+  <div class="cta-yellow-band">
+    <div class="container">
+      <h2 class="cta-yellow-title">RÉSERVEZ VOTRE ESSAI</h2>
+      <p class="cta-yellow-desc">Découvrez l'expérience Élan dans l'un de nos 120 centres en France. Conduisez l'avenir.</p>
+      <a href="#" class="btn btn-outline-dark">Prendre rendez-vous</a>
+    </div>
+  </div>
+
+  <!-- Dark CTA -->
+  <section id="store" class="cta-dark-band">
+    <div class="container">
+      <h2 class="cta-dark-title">PRÊT POUR L'AVENIR?</h2>
+      <p class="cta-dark-desc">Commandez votre Élan dès aujourd'hui. Livraison sous 8 à 12 semaines.</p>
+      <a href="#" class="btn btn-primary">Commander</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-col">
+          <h4>Modèles</h4>
+          <ul>
+            <li><a href="#">Élan Cité</a></li>
+            <li><a href="#">Élan Évasion</a></li>
+            <li><a href="#">Élan Sport</a></li>
+            <li><a href="#">Comparer</a></li>
+            <li><a href="#">Configurateur</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Technologie</h4>
+          <ul>
+            <li><a href="#">Batterie</a></li>
+            <li><a href="#">Moteur</a></li>
+            <li><a href="#">Recharge</a></li>
+            <li><a href="#">Connectivité</a></li>
+            <li><a href="#">Sécurité</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Entreprise</h4>
+          <ul>
+            <li><a href="#">Notre Histoire</a></li>
+            <li><a href="#">Design Paris</a></li>
+            <li><a href="#">Carrières</a></li>
+            <li><a href="#">Presse</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Support</h4>
+          <ul>
+            <li><a href="#">Service Client</a></li>
+            <li><a href="#">Centres Service</a></li>
+            <li><a href="#">Garantie</a></li>
+            <li><a href="#">Livraison</a></li>
+            <li><a href="#">FAQ</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr class="footer-divider">
+      <div class="footer-bottom">
+        <span class="footer-copyright">&copy; 2026 Élan Motors. Tous droits réservés.</span>
+        <div class="footer-legal">
+          <a href="#">Vie Privée</a>
+          <a href="#">Mentions Légales</a>
+          <a href="#">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    let menuOpen = false;
+
+    hamburger.addEventListener('click', () => {
+      menuOpen = !menuOpen;
+      hamburger.classList.toggle('active', menuOpen);
+      mobileMenu.classList.toggle('open', menuOpen);
+    });
+
+    document.querySelectorAll('.mobile-menu a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuOpen = false;
+        hamburger.classList.remove('active');
+        mobileMenu.classList.remove('open');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -4,6 +4,20 @@
 
 A single-file HTML landing page for the fictional **Élan Motors** brand: premium French electric city cars that blend Parisian design with modern EV engineering. The page is a static marketing mockup — three model cards, a technology stats band, a configurator preview panel, and call-to-action bands — written in French (`<html lang="fr">`) with an English hero tagline.
 
+## Table of contents
+
+- [Repository contents](#repository-contents)
+- [Page sections](#page-sections)
+- [The lineup](#the-lineup)
+- [Design system](#design-system)
+  - [Responsive breakpoints](#responsive-breakpoints)
+- [Interactivity](#interactivity)
+- [Getting started](#getting-started)
+- [Image sourcing (`fetch_images.py`)](#image-sourcing-fetch_imagespy)
+- [Structured data cheat-sheet](#structured-data-cheat-sheet)
+- [Accessibility notes](#accessibility-notes)
+- [License](#license)
+
 ## Repository contents
 
 | File | Purpose |
@@ -91,6 +105,38 @@ python3 fetch_images.py
 - 5 queries: `"electric car france"`, `"renault electric vehicle"`, `"electric hatchback"`, `"french electric car"`, `"urban electric vehicle"`
 - Searches the `File:` namespace (`srnamespace=6`), 5 results per query, 800px thumbnails (`iiurlwidth=800`), `ElanMotors/1.0` User-Agent
 - Output ends with a `--- Image URLs (for HTML) ---` block of direct `https://` thumb URLs
+
+## Structured data cheat-sheet
+
+The marketing facts on the page live only as HTML markup, so they aren't easy to reuse elsewhere. This cheat-sheet mirrors the same data in machine-readable JSON for maintainers, tests, or future automation (e.g. regenerating the configurator panel or powering a `/api` stub):
+
+```json
+{
+  "brand": "Élan Motors",
+  "lineup": [
+    { "model": "Élan Cité",     "badge": "NOUVEAU", "range_km": 320, "tagline": "Urban agility meets French design. 320 km range, compact footprint." },
+    { "model": "Élan Évasion",  "badge": null,      "range_km": 450, "tagline": "Extended range for weekend escapes. 450 km WLTP, fast-charge capable." },
+    { "model": "Élan Sport",    "badge": null,      "range_km": null, "tagline": "Performance redefined. Dual motor AWD, 0–100 km/h in 4.2 s." }
+  ],
+  "tech_stats": { "autonomie_wltp": "450 km", "puissance_moteur": "170 kW", "acceleration_0_100_s": "4.2 s", "batterie": "87 kWh", "recharge_rapide": "22 min" },
+  "configurator": {
+    "vehicle": "Élan Cité — Finition Atelier",
+    "motorisation": "100 kW / 320 km",
+    "couleurs": ["#ffed00", "#000000", "#ffffff", "#333333"],
+    "selected_color": "#ffed00"
+  }
+}
+```
+
+Keep this block in sync with `index.html` whenever you change a figure in the markup — it's the single source truth for any script that reads the page.
+
+## Accessibility notes
+
+The page has solid foundations and a few easy wins if you plan to reuse it:
+
+- **Already good:** semantic landmarks (`<nav>`, `<section>`, `<footer>`), descriptive image `alt` text, `loading="lazy"` on below-fold images, `aria-label`-able buttons, and a clear visual focus state (hover/active color shifts).
+- **Worth adding:** the hamburger button and mobile-menu links have no `aria-expanded` / `aria-controls` wiring, and the menu is a `div` rather than a native `<dialog>` or `<ul role="menu">`; the color-swatch dots are `cursor:pointer` `<span>`s with no `role="button"` or keyboard behaviour.
+- The brand yellow `#ffed00` on black passes WCAG AA for normal text; the muted `#8a8a8a` labels on the dark section are borderline for small text — consider `#a0a0a0` or bumping weight there.
 
 ## License
 
